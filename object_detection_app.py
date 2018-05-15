@@ -6,6 +6,7 @@ import multiprocessing
 import numpy as np
 import tensorflow as tf
 
+
 from utils.app_utils import FPS, WebcamVideoStream
 from multiprocessing import Queue, Pool
 from object_detection.utils import label_map_util
