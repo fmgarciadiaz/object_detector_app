@@ -6,7 +6,6 @@ import multiprocessing
 import numpy as np
 import tensorflow as tf
 
-
 from utils.app_utils import FPS, WebcamVideoStream
 from multiprocessing import Queue, Pool
 from object_detection.utils import label_map_util
@@ -15,7 +14,9 @@ from object_detection.utils import visualization_utils as vis_util
 CWD_PATH = os.getcwd()
 
 # Path to frozen detection graph. This is the actual model that is used for the object detection.
-MODEL_NAME = 'ssd_mobilenet_v1_coco_11_06_2017'
+#MODEL_NAME = 'ssd_mobilenet_v1_coco_11_06_2017'
+MODEL_NAME = 'ssdlite_mobilenet_v2_coco_2018_05_09'   # probando FERGD
+#MODEL_NAME ='faster_rcnn_inception_resnet_v2_atrous_coco_2018_01_28'
 PATH_TO_CKPT = os.path.join(CWD_PATH, 'object_detection', MODEL_NAME, 'frozen_inference_graph.pb')
 
 # List of the strings that is used to add correct label for each box.
@@ -57,7 +58,8 @@ def detect_objects(image_np, sess, detection_graph):
         np.squeeze(scores),
         category_index,
         use_normalized_coordinates=True,
-        line_thickness=8)
+        line_thickness=6)
+    #print('[INFO-FER] Encontré un:{:.2f}'.format(np.squeeze(classes).astype(np.int32)))
     return image_np
 
 
